@@ -1311,7 +1311,7 @@ defmodule ExAdmin.Form do
   end
 
   def build_control({:array, type}, resource, opts, model_name, field_name, ext_name)
-      when type in ~w(string integer)a do
+      when type in ~w(string integer float)a do
     name = "#{model_name}-#{field_name}"
 
     # currently we only support select 2

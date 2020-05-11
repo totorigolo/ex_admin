@@ -85,6 +85,12 @@ defmodule ExAdmin.ErrorsHelper do
     end)
   end
 
-  defp is_struct(%{__struct__: _}), do: true
-  defp is_struct(_), do: false
+  # Checking via version since Kernel.function_exported?(Kernel, :is_struct, 1) reports false
+  System.version()
+  |> Version.parse!
+  |> Version.match?("~> 1.10")
+  |> unless do
+    defp is_struct(%{__struct__: _}), do: true
+    defp is_struct(_), do: false
+  end
 end

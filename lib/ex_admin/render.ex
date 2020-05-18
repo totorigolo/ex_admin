@@ -11,7 +11,7 @@ defimpl ExAdmin.Render, for: Atom do
 end
 
 defimpl ExAdmin.Render, for: BitString do
-  def to_string(data), do: data |> html_escape |> safe_to_string
+  def to_string(data), do: data |> html_escape |> Phoenix.HTML.safe_to_string()
 end
 
 defimpl ExAdmin.Render, for: Integer do

@@ -1,6 +1,6 @@
 <% import ExAdmin.Gettext %>
 <header class="main-header" id="header">
-  <a href="#" class="logo">
+  <a href="<%= ExAdmin.LayoutView.logo_link %>" class="logo">
     <span class="logo-mini"><%= ExAdmin.LayoutView.logo_mini %></span>
     <!-- logo for regular state and mobile devices -->
     <span class="logo-lg"><%= ExAdmin.LayoutView.logo_full %></span>

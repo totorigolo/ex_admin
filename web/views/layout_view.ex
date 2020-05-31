@@ -22,6 +22,10 @@ defmodule ExAdmin.LayoutView do
     end
   end
 
+  def logo_link do
+    Application.get_env(:ex_admin, :logo_link, "/")
+  end
+
   def logo_mini do
     default = "Ex<b>A</b>"
     Application.get_env(:ex_admin, :logo_mini, default)

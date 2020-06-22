@@ -59,14 +59,14 @@ defmodule ExAdmin.Mixfile do
   defp deps do
     [
       {:decimal, "~> 1.0"},
-      {:phoenix, "~> 1.4"},
+      {:phoenix, "~> 1.5.0"},
+      {:plug_cowboy, "~> 2.1"},
       {:phoenix_html, "~> 2.6"},
       {:ecto, "~> 3.0"},
       {:phoenix_ecto, "~> 4.0"},
       {:postgrex, "~> 0.14", only: :test},
       {:floki, "~> 0.8", only: :test},
       {:cowboy, "~> 2.5"},
-      {:plug_cowboy, "~> 2.0"},
       {:inflex, "~> 1.7"},
       {:scrivener_ecto, "~> 2.0"},
       {:xain, "0.6.1"}, #TODO: https://github.com/smpallen99/xain/issues/20

@@ -72,13 +72,13 @@ defmodule ExAdmin.Mixfile do
       {:xain, "0.6.1"}, #TODO: https://github.com/smpallen99/xain/issues/20
       {:csvlixir, "~> 1.0.0"},
       {:exactor, "~> 2.2.0"},
-      {:ex_doc, "~> 0.16.2", only: :dev},
-      {:earmark, "~> 1.1", only: :dev},
-      {:ex_queb, github: "iwarshak/ex_queb"},
+      {:ex_doc, "~> 0.22", only: :dev},
+      {:earmark, "~> 1.4", only: :dev},
+      {:ex_queb, github: "iwarshak/ex_queb", ref: "3aab53ac21cb9b9292614abadfaeb96c10e1f74b"},
       {:excoveralls, "~> 0.5", only: :test},
-      {:gettext, "~> 0.11"},
+      {:gettext, "~> 0.18"},
       {:html_entities, "~> 0.4"},
-      {:html_sanitize_ex, github: "sublimecoder/html_sanitize_ex"},
+      {:html_sanitize_ex, "~> 1.3.0"},
       {:hound, "~> 1.0", only: :test}
     ]
   end

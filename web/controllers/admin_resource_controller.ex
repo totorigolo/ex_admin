@@ -51,7 +51,7 @@ defmodule ExAdmin.AdminResourceController do
   def edit(conn, defn, params) do
     resource = conn.assigns.resource
 
-    changeset = defn.resource_model.changeset(resource, %{})
+    changeset = apply(defn.resource_model, defn.update_changeset, [resource, %{}])
 
     conn = Plug.Conn.assign(conn, :ea_required, changeset.required)
     {conn, params, resource} = handle_after_filter(conn, :edit, defn, params, resource)
@@ -63,7 +63,7 @@ defmodule ExAdmin.AdminResourceController do
   def new(conn, defn, params) do
     resource = conn.assigns.resource
 
-    changeset = defn.resource_model.changeset(resource, %{})
+    changeset = apply(defn.resource_model, defn.create_changeset, [resource, %{}])
 
     conn = Plug.Conn.assign(conn, :ea_required, changeset.required)
     {conn, params, resource} = handle_after_filter(conn, :new, defn, params, resource)

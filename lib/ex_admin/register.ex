@@ -37,7 +37,8 @@ defmodule ExAdmin.Register do
   * `collection_action` - Add a custom action for collection based requests
   * `clear_action_items!` - Remove the action item buttons
   * `action_item` - Defines custom action items
-  * `changesets` - Defines custom changeset functions
+  * `create_changeset` - Defines custom changeset function for creation
+  * `update_changeset` - Defines custom changeset function for updates
 
   """
 
@@ -115,7 +116,6 @@ defmodule ExAdmin.Register do
       Module.put_attribute(__MODULE__, :module, module)
       Module.put_attribute(__MODULE__, :query, nil)
       Module.put_attribute(__MODULE__, :selectable_column, nil)
-      Module.put_attribute(__MODULE__, :changesets, [])
       Module.put_attribute(__MODULE__, :update_changeset, :changeset)
       Module.put_attribute(__MODULE__, :create_changeset, :changeset)
 
@@ -240,7 +240,6 @@ defmodule ExAdmin.Register do
                 position_column: Module.get_attribute(__MODULE__, :position_column),
                 name_column: @name_column,
                 batch_actions: Module.get_attribute(__MODULE__, :batch_actions),
-                changesets: Module.get_attribute(__MODULE__, :changesets),
                 plugs: plugs,
                 sidebars: sidebars,
                 scopes: scopes,
@@ -286,10 +285,6 @@ defmodule ExAdmin.Register do
           keywords ->
             from(r in query, where: ilike(field(r, ^field), ^"%#{keywords}%"))
         end
-      end
-
-      def changeset_fn(defn, action) do
-        Keyword.get(defn.changesets, action, &defn.resource_model.changeset/2)
       end
 
       def plugs(), do: @controller_plugs
@@ -542,32 +537,6 @@ defmodule ExAdmin.Register do
         :controller_filters,
         {:after_filter, {unquote(name), unquote(opts)}}
       )
-    end
-  end
-
-  @doc """
-  Override the changeset function for `update` and `create` actions.
-  By default, `changeset/2` for the resource will be used.
-
-  ## Examples
-
-  The following example illustrates how to configure custom changeset functions
-  for create and update actions.
-
-      changesets create: &__MODULE__.create_changeset/2,
-                 update: &__MODULE__.update_changeset/2
-
-      def create_changeset(model, params) do
-        Ecto.Changeset.cast(model, params, ~w(name password), ~w(age))
-      end
-
-      def update_changeset(model, params) do
-        Ecto.Changeset.cast(model, params, ~w(name), ~w(age password))
-      end
-  """
-  defmacro changesets(opts) do
-    quote location: :keep do
-      Module.put_attribute(__MODULE__, :changesets, unquote(opts))
     end
   end
 

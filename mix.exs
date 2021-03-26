@@ -69,7 +69,7 @@ defmodule ExAdmin.Mixfile do
       {:cowboy, "~> 2.5"},
       {:inflex, "~> 1.7"},
       {:scrivener_ecto, "~> 2.0"},
-      {:xain, "0.6.1"}, #TODO: https://github.com/smpallen99/xain/issues/20
+      {:xain, github: "totorigolo/xain"}, #TODO: https://github.com/smpallen99/xain/issues/20
       {:csvlixir, "~> 1.0.0"},
       {:exactor, "~> 2.2.0"},
       {:ex_doc, "~> 0.22", only: :dev},
